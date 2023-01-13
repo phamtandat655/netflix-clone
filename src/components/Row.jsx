@@ -31,7 +31,8 @@ function Row({ title, fetchURL }) {
 
         onSnapshot(doc(db, 'users', `${user?.email}`), (doc) => {
             setLikedMovies(doc.data()?.savedShows);
-            localStorage.setItem('likedMovie', JSON.stringify(doc.data()?.savedShows));
+            if (JSON.stringify(doc.data()?.savedShows) !== undefined)
+                localStorage.setItem('likedMovie', JSON.stringify(doc.data()?.savedShows));
         });
 
         if (user?.email && JSON.parse(localStorage.getItem('likedMovie')) !== undefined) {
