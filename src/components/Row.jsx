@@ -34,7 +34,7 @@ function Row({ title, fetchURL }) {
             localStorage.setItem('likedMovie', JSON.stringify(doc.data()?.savedShows));
         });
 
-        if (JSON.parse(localStorage.getItem('likedMovie'))) {
+        if (user?.email && JSON.parse(localStorage.getItem('likedMovie')) !== undefined) {
             setLocal(JSON.parse(localStorage.getItem('likedMovie')));
         }
     }, [fetchURL, user?.email]);
